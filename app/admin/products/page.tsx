@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Container, SectionHeading } from "@/components/layout";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { readProducts } from "@/lib/products";
-import { LogoutButton } from "./logout-button";
+import { LogoutButton } from "@/app/admin/logout-button";
 
 export const dynamic = "force-dynamic";
 
