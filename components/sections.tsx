@@ -42,38 +42,45 @@ export function HeroSection() {
             <div className="absolute -right-8 bottom-10 hidden h-48 w-48 rounded-full bg-copper/10 blur-3xl lg:block" />
 
             <div className="relative rounded-[2.2rem] border border-ink/8 bg-white p-5 shadow-[0_30px_80px_rgba(16,33,45,0.10)] sm:p-6 xl:mt-0">
-              <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#eae3da]">
-                <Image
-                  src="/hero/product-bright.jpg"
-                  alt="Mirror product and application image for overseas buyers"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-              </div>
-
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                <HeroImageCard
-                  title="Product"
-                  detail="Smart bathroom mirrors, vanity mirrors, and full-length mirror collections"
-                  imageSrc="/hero/product-bright.jpg"
-                  imageAlt="Mirror product image"
-                />
-                <HeroImageCard
-                  title="Showroom"
-                  detail="Display-ready presentation that helps buyers review style and market fit"
-                  imageSrc="/hero/showroom-bright.jpg"
-                  imageAlt="Mirror showroom image"
-                />
-                <HeroImageCard
-                  title="Workshop"
-                  detail="Visible production environment that strengthens delivery confidence"
-                  imageSrc="/hero/workshop-bright.jpg"
-                  imageAlt="Factory workshop image"
-                  dark
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative h-64 overflow-hidden rounded-[1.5rem] sm:h-72">
+                  <Image
+                    src="/hero/mirror-lifestyle-1.jpg"
+                    alt="Full length mirror in modern living room"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative h-64 overflow-hidden rounded-[1.5rem] sm:h-72">
+                  <Image
+                    src="/hero/mirror-lifestyle-2.jpg"
+                    alt="Smart bathroom mirror with LED lighting"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative h-64 overflow-hidden rounded-[1.5rem] sm:h-72">
+                  <Image
+                    src="/hero/mirror-lifestyle-3.jpg"
+                    alt="Decorative mirror in cozy living space"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative h-64 overflow-hidden rounded-[1.5rem] sm:h-72">
+                  <Image
+                    src="/hero/mirror-lifestyle-4.jpg"
+                    alt="Smart bathroom mirror with touch controls"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
               </div>
             </div>
           </div>

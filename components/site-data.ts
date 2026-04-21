@@ -38,6 +38,12 @@ export const productCategories: ProductCategory[] = [
     applications: "Home furnishing chains, boutiques, showroom programs",
   },
   {
+    title: "Irregular Wavy Wall Mirrors",
+    description:
+      "Premium sculptural wave mirrors with high-definition anti-darkening glass, contemporary organic shapes, and customizable finishes for modern interior programs.",
+    applications: "Designer collections, boutique hotels, premium residential, trend-led retail",
+  },
+  {
     title: "Wall Mirrors",
     description:
       "Round, rectangular, arched, and custom wall mirrors balanced for commercial durability and interior appeal.",
