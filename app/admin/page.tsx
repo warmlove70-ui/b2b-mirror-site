@@ -48,6 +48,9 @@ export default async function AdminDashboard() {
                 <Link href="/admin/content" className="text-sm text-ink/70 hover:text-teal">
                   内容管理
                 </Link>
+                <Link href="/admin/homepage" className="text-sm text-ink/70 hover:text-teal">
+                  首页管理
+                </Link>
                 <Link href="/admin/settings" className="text-sm text-ink/70 hover:text-teal">
                   站点设置
                 </Link>
@@ -175,7 +178,7 @@ export default async function AdminDashboard() {
           </div>
 
           {/* Quick Actions */}
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Link 
               href="/admin/products" 
               className="rounded-2xl border border-ink/10 bg-white p-6 shadow-soft transition hover:shadow-md"
@@ -206,6 +209,23 @@ export default async function AdminDashboard() {
                 <div>
                   <h3 className="font-semibold text-ink">发布文章</h3>
                   <p className="text-sm text-ink/60">博客/SEO 内容</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/homepage" 
+              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-soft transition hover:shadow-md"
+            >
+              <div className="flex items-center gap-4">
+                <div className="rounded-full bg-orange/10 p-3">
+                  <svg className="h-6 w-6 text-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l8.714-8.714M12 20h.01M12 4v8m0 4h.01" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-ink">首页管理</h3>
+                  <p className="text-sm text-ink/60">图片/布局配置</p>
                 </div>
               </div>
             </Link>

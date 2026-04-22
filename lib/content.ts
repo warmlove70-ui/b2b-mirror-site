@@ -38,6 +38,25 @@ export interface SiteSettings {
   notificationEmail?: string;
 }
 
+export interface HeroImage {
+  id: string;
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  order: number;
+  enabled: boolean;
+}
+
+export interface HomePageConfig {
+  heroMainImage: string;
+  heroCards: HeroImage[];
+  productImages: string[];
+  audienceImages: string[];
+  trustItems: string[];
+  valuePillars: string[];
+  marketRegions: string[];
+}
+
 async function ensureDataDir() {
   await fs.mkdir(dataDir, { recursive: true });
 }
@@ -109,4 +128,77 @@ export async function saveSettings(settings: SiteSettings) {
   await ensureDataDir();
   await fs.writeFile(settingsFile, JSON.stringify(settings, null, 2), "utf-8");
   return settings;
+}
+
+// Homepage Config
+const homepageConfigFile = path.join(dataDir, "homepage-config.json");
+
+export async function readHomepageConfig(): Promise<HomePageConfig> {
+  try {
+    await ensureDataDir();
+    const data = await fs.readFile(homepageConfigFile, "utf-8");
+    return JSON.parse(data);
+  } catch {
+    return {
+      heroMainImage: "/hero/luxury-bathroom-scene.jpg",
+      heroCards: [
+        {
+          id: "1",
+          title: "Product",
+          imageSrc: "/hero/smart-bathroom-mirror.jpg",
+          imageAlt: "LED smart bathroom mirror",
+          order: 1,
+          enabled: true,
+        },
+        {
+          id: "2",
+          title: "Showroom",
+          imageSrc: "/hero/showroom-neutral.jpg",
+          imageAlt: "Showroom scene",
+          order: 2,
+          enabled: true,
+        },
+        {
+          id: "3",
+          title: "Workshop",
+          imageSrc: "/hero/workshop-bright.jpg",
+          imageAlt: "Factory workshop",
+          order: 3,
+          enabled: true,
+        },
+      ],
+      productImages: [
+        "/hero/smart-bathroom-mirror.jpg",
+        "/hero/luxury-dressing-scene.jpg",
+        "/products/irregular-wavy-wall-mirror.png",
+        "/hero/hero-minimal-mirror.jpg",
+        "/hero/entryway-mirror.webp",
+        "/products/irregular-wavy-wall-mirror.png",
+      ],
+      audienceImages: [
+        "/hero/showroom-neutral.jpg",
+        "/hero/luxury-dressing-scene.jpg",
+        "/hero/luxury-bathroom-scene.jpg",
+      ],
+      trustItems: [
+        "17 years serving small buyers, growing brands, and project customers",
+        "ISO 9001 quality system",
+        "CE / UL / CB / UKCA / RoHS compliance coverage",
+        "OEM / ODM development and export packaging support",
+      ],
+      valuePillars: [
+        "OEM / ODM development",
+        "Wholesale production",
+        "Project supply coordination",
+        "Export packaging and documentation",
+      ],
+      marketRegions: ["Middle East", "South America", "Central Asia"],
+    };
+  }
+}
+
+export async function saveHomepageConfig(config: HomePageConfig) {
+  await ensureDataDir();
+  await fs.writeFile(homepageConfigFile, JSON.stringify(config, null, 2), "utf-8");
+  return config;
 }

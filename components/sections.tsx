@@ -3,8 +3,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { Container, SectionHeading } from "@/components/layout";
 import { marketRegions, productCategories, valuePillars } from "@/components/site-data";
+import { readHomepageConfig } from "@/lib/content";
 
-const productImages = [
+// Default images (fallback)
+const defaultProductImages = [
   "/hero/smart-bathroom-mirror.jpg",
   "/hero/luxury-dressing-scene.jpg",
   "/products/irregular-wavy-wall-mirror.png",
@@ -13,13 +15,39 @@ const productImages = [
   "/products/irregular-wavy-wall-mirror.png",
 ];
 
-const audienceImages = [
+const defaultAudienceImages = [
   "/hero/showroom-neutral.jpg",
   "/hero/luxury-dressing-scene.jpg",
   "/hero/luxury-bathroom-scene.jpg",
 ];
 
-export function HeroSection() {
+interface SectionProps {
+  config?: {
+    heroMainImage: string;
+    heroCards: Array<{
+      id: string;
+      title: string;
+      imageSrc: string;
+      imageAlt: string;
+      order: number;
+      enabled: boolean;
+    }>;
+    productImages: string[];
+    audienceImages: string[];
+    trustItems: string[];
+    valuePillars: string[];
+    marketRegions: string[];
+  };
+}
+
+export function HeroSection({ config }: SectionProps) {
+  const heroMainImage = config?.heroMainImage || "/hero/luxury-bathroom-scene.jpg";
+  const heroCards = config?.heroCards?.filter(c => c.enabled).slice(0, 3) || [
+    { title: "Product", imageSrc: "/hero/smart-bathroom-mirror.jpg", imageAlt: "LED smart bathroom mirror" },
+    { title: "Showroom", imageSrc: "/hero/showroom-neutral.jpg", imageAlt: "Showroom scene" },
+    { title: "Workshop", imageSrc: "/hero/workshop-bright.jpg", imageAlt: "Factory workshop" },
+  ];
+
   return (
     <section className="overflow-hidden pb-10 pt-1 sm:pb-14 sm:pt-2">
       <Container>
@@ -59,7 +87,7 @@ export function HeroSection() {
             <div className="relative rounded-[2.2rem] border border-ink/8 bg-white p-5 shadow-[0_30px_80px_rgba(16,33,45,0.10)] sm:p-6 xl:mt-0">
               <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#eae3da]">
                 <Image
-                  src="/hero/luxury-bathroom-scene.jpg"
+                  src={heroMainImage}
                   alt="Premium smart bathroom mirror installed in a modern bathroom"
                   fill
                   priority
@@ -70,25 +98,16 @@ export function HeroSection() {
               </div>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                <HeroImageCard
-                  title="Product"
-                  detail="Smart bathroom mirrors, vanity mirrors, and full-length mirror collections"
-                  imageSrc="/hero/smart-bathroom-mirror.jpg"
-                  imageAlt="LED smart bathroom mirror above a vanity"
-                />
-                <HeroImageCard
-                  title="Showroom"
-                  detail="Display-ready presentation that helps buyers review style and market fit"
-                  imageSrc="/hero/showroom-neutral.jpg"
-                  imageAlt="Home-style showroom scene with a full-length mirror"
-                />
-                <HeroImageCard
-                  title="Workshop"
-                  detail="Visible production environment that strengthens delivery confidence"
-                  imageSrc="/hero/workshop-bright.jpg"
-                  imageAlt="Factory workshop image"
-                  dark
-                />
+                {heroCards.map((card, index) => (
+                  <HeroImageCard
+                    key={card.id || index}
+                    title={card.title}
+                    detail={index === 0 ? "Smart bathroom mirrors, vanity mirrors, and full-length mirror collections" : index === 1 ? "Display-ready presentation that helps buyers review style and market fit" : "Visible production environment that strengthens delivery confidence"}
+                    imageSrc={card.imageSrc}
+                    imageAlt={card.imageAlt}
+                    dark={index === 2}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -98,8 +117,8 @@ export function HeroSection() {
   );
 }
 
-export function TrustStrip() {
-  const items = [
+export function TrustStrip({ config }: SectionProps) {
+  const items = config?.trustItems || [
     "17 years serving small buyers, growing brands, and project customers",
     "ISO 9001 quality system",
     "CE / UL / CB / UKCA / RoHS compliance coverage",
@@ -124,7 +143,9 @@ export function TrustStrip() {
   );
 }
 
-export function CapabilitiesSection() {
+export function CapabilitiesSection({ config }: SectionProps) {
+  const pillars = config?.valuePillars || valuePillars;
+
   return (
     <section className="py-12 sm:py-16">
       <Container>
@@ -135,7 +156,7 @@ export function CapabilitiesSection() {
             description="The homepage now frames ZEKSmart as a manufacturing and export partner with certification support, customization ability, and practical delivery coordination."
           />
           <div className="grid gap-4 sm:grid-cols-2">
-            {valuePillars.map((pillar) => (
+            {pillars.map((pillar) => (
               <div
                 key={pillar}
                 className="rounded-[1.6rem] border border-ink/8 bg-white p-6 shadow-soft"
@@ -153,7 +174,9 @@ export function CapabilitiesSection() {
   );
 }
 
-export function ProductGridSection() {
+export function ProductGridSection({ config }: SectionProps) {
+  const productImages = config?.productImages || defaultProductImages;
+
   return (
     <section className="py-12 sm:py-16">
       <Container>
@@ -194,7 +217,9 @@ export function ProductGridSection() {
   );
 }
 
-export function AudienceSection() {
+export function AudienceSection({ config }: SectionProps) {
+  const audienceImages = config?.audienceImages || defaultAudienceImages;
+
   const cards = [
     {
       title: "For Importers",
@@ -255,7 +280,9 @@ export function AudienceSection() {
   );
 }
 
-export function MarketsSection() {
+export function MarketsSection({ config }: SectionProps) {
+  const regions = config?.marketRegions || marketRegions;
+
   return (
     <section className="py-12 sm:py-16">
       <Container>
@@ -271,7 +298,7 @@ export function MarketsSection() {
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {marketRegions.map((region) => (
+              {regions.map((region) => (
                 <div key={region} className="rounded-[1.3rem] border border-white/10 bg-white/8 p-5">
                   <p className="text-lg font-semibold">{region}</p>
                   <p className="mt-2 text-sm leading-6 text-sand/72">

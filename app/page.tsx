@@ -1,3 +1,4 @@
+import { readHomepageConfig } from "@/lib/content";
 import {
   AudienceSection,
   CapabilitiesSection,
@@ -8,15 +9,17 @@ import {
   TrustStrip,
 } from "@/components/sections";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const config = await readHomepageConfig();
+
   return (
     <>
-      <HeroSection />
-      <TrustStrip />
-      <CapabilitiesSection />
-      <ProductGridSection />
-      <AudienceSection />
-      <MarketsSection />
+      <HeroSection config={config} />
+      <TrustStrip config={config} />
+      <CapabilitiesSection config={config} />
+      <ProductGridSection config={config} />
+      <AudienceSection config={config} />
+      <MarketsSection config={config} />
       <CtaBanner
         title="Need catalog, quotation, sample support, or project coordination?"
         description="Talk to ZEKSmart for smart bathroom mirrors, full-length mirrors, decorative collections, and OEM / ODM export programs."
