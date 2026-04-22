@@ -43,9 +43,9 @@ interface SectionProps {
 export function HeroSection({ config }: SectionProps) {
   const heroMainImage = config?.heroMainImage || "/hero/luxury-bathroom-scene.jpg";
   const heroCards = config?.heroCards?.filter(c => c.enabled).slice(0, 3) || [
-    { title: "Product", imageSrc: "/hero/smart-bathroom-mirror.jpg", imageAlt: "LED smart bathroom mirror" },
-    { title: "Showroom", imageSrc: "/hero/showroom-neutral.jpg", imageAlt: "Showroom scene" },
-    { title: "Workshop", imageSrc: "/hero/workshop-bright.jpg", imageAlt: "Factory workshop" },
+    { id: "1", title: "Product", imageSrc: "/hero/smart-bathroom-mirror.jpg", imageAlt: "LED smart bathroom mirror", order: 1, enabled: true },
+    { id: "2", title: "Showroom", imageSrc: "/hero/showroom-neutral.jpg", imageAlt: "Showroom scene", order: 2, enabled: true },
+    { id: "3", title: "Workshop", imageSrc: "/hero/workshop-bright.jpg", imageAlt: "Factory workshop", order: 3, enabled: true },
   ];
 
   return (
