@@ -5,16 +5,16 @@ import { Container, SectionHeading } from "@/components/layout";
 import { marketRegions, productCategories, valuePillars } from "@/components/site-data";
 
 const productImages = [
-  "/hero/product-bright.jpg",
+  "/hero/smart-bathroom-mirror.jpg",
   "/hero/luxury-dressing-scene.jpg",
-  "/hero/luxury-bathroom-scene.jpg",
-  "/hero/showroom-bright.jpg",
-  "/hero/floor-mirror.png",
+  "/products/irregular-wavy-wall-mirror.png",
+  "/hero/hero-minimal-mirror.jpg",
+  "/hero/entryway-mirror.webp",
   "/products/irregular-wavy-wall-mirror.png",
 ];
 
 const audienceImages = [
-  "/hero/showroom-bright.jpg",
+  "/hero/showroom-neutral.jpg",
   "/hero/luxury-dressing-scene.jpg",
   "/hero/luxury-bathroom-scene.jpg",
 ];
@@ -73,14 +73,14 @@ export function HeroSection() {
                 <HeroImageCard
                   title="Product"
                   detail="Smart bathroom mirrors, vanity mirrors, and full-length mirror collections"
-                  imageSrc="/hero/product-bright.jpg"
-                  imageAlt="Mirror product image"
+                  imageSrc="/hero/smart-bathroom-mirror.jpg"
+                  imageAlt="LED smart bathroom mirror above a vanity"
                 />
                 <HeroImageCard
                   title="Showroom"
                   detail="Display-ready presentation that helps buyers review style and market fit"
-                  imageSrc="/hero/showroom-bright.jpg"
-                  imageAlt="Mirror showroom image"
+                  imageSrc="/hero/showroom-neutral.jpg"
+                  imageAlt="Home-style showroom scene with a full-length mirror"
                 />
                 <HeroImageCard
                   title="Workshop"

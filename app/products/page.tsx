@@ -7,9 +7,9 @@ const categoryImages: Record<string, string> = {
   "Smart Bathroom Mirrors": "/hero/smart-mirror.png",
   "Full Length Mirrors": "/hero/floor-mirror.png",
   "Irregular Wavy Wall Mirrors": "/products/irregular-wavy-wall-mirror.png",
-  "Wall Mirrors": "/hero/luxury-bathroom-mirror.jpg",
-  "Wooden Frames": "/hero/showroom.jpg",
-  "Decorative Mirrors": "/hero/luxury-living-mirror.jpg",
+  "Wall Mirrors": "/hero/luxury-bathroom-scene.jpg",
+  "Wooden Frames": "/hero/workshop.jpg",
+  "Decorative Mirrors": "/hero/product-bright.jpg",
 };
 
 export default function ProductsPage() {
