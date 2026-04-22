@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { readProducts, saveProduct, deleteProduct, Product } from "@/lib/products";
+import { readContent, saveContent, deleteContent, BlogPost } from "@/lib/content";
 
 export async function GET() {
   const authed = await isAdminAuthenticated();
@@ -8,8 +8,8 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const products = await readProducts();
-  return NextResponse.json({ products });
+  const content = await readContent();
+  return NextResponse.json({ content });
 }
 
 export async function POST(request: NextRequest) {
@@ -20,17 +20,17 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const product: Product = {
+    const post: BlogPost = {
       ...body,
       id: body.id || crypto.randomUUID(),
       createdAt: body.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
 
-    const saved = await saveProduct(product);
-    return NextResponse.json({ product: saved });
+    const saved = await saveContent(post);
+    return NextResponse.json({ post: saved });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to save product" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to save content" }, { status: 500 });
   }
 }
 
@@ -47,6 +47,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "ID required" }, { status: 400 });
   }
 
-  await deleteProduct(id);
+  await deleteContent(id);
   return NextResponse.json({ success: true });
 }
