@@ -13,6 +13,12 @@ export const brand = {
   whatsappDisplay: whatsappNumberRaw,
   whatsappHref: `https://wa.me/${whatsappDigits}`,
   responseSla: "Catalog and quotation support within 24 hours",
+  socialLinks: [
+    { label: "X", href: "https://x.com/zeksmart" },
+    { label: "Instagram", href: "https://www.instagram.com/zeksmart1/" },
+    { label: "Pinterest", href: "https://www.pinterest.com/zeksmart/" },
+    { label: "YouTube", href: "https://www.youtube.com/channel/UCnNOHhi0y9f6Den0yRS8HkQ" },
+  ],
 };
 
 export const navLinks: NavLink[] = [
@@ -36,6 +42,12 @@ export const productCategories: ProductCategory[] = [
     description:
       "Iron and solid wood dressing mirrors developed for retail programs, private label ranges, and furniture bundles.",
     applications: "Home furnishing chains, boutiques, showroom programs",
+  },
+  {
+    title: "Irregular Wavy Wall Mirrors",
+    description:
+      "Premium sculptural wave mirrors with high-definition anti-darkening glass, contemporary organic shapes, and customizable finishes for modern interior programs.",
+    applications: "Designer collections, boutique hotels, premium residential, trend-led retail",
   },
   {
     title: "Wall Mirrors",

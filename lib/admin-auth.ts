@@ -3,7 +3,8 @@ import { cookies } from "next/headers";
 export const ADMIN_COOKIE_NAME = "zeksmart_admin_auth";
 
 export function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD || "";
+  // Fallback password if ADMIN_PASSWORD is not set
+  return process.env.ADMIN_PASSWORD || "ZekSmart2026!";
 }
 
 export async function isAdminAuthenticated() {

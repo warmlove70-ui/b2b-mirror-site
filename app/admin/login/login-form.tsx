@@ -1,10 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export function LoginForm({ next }: { next: string }) {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,15 +17,17 @@ export function LoginForm({ next }: { next: string }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
+        credentials: "include",
       });
 
       const data = await response.json();
+      
       if (!response.ok || !data.ok) {
         throw new Error(data.error || "Login failed.");
       }
 
-      router.push(next);
-      router.refresh();
+      // 直接跳转，不使用 Next.js router
+      window.location.href = next;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed.");
     } finally {
@@ -55,7 +55,11 @@ export function LoginForm({ next }: { next: string }) {
       >
         {loading ? "Signing in..." : "Sign in"}
       </button>
-      {error ? <div className="rounded-2xl bg-[#fff3f1] px-4 py-3 text-sm text-[#9f3d2e]">{error}</div> : null}
+      {error ? (
+        <div className="rounded-2xl bg-[#fff3f1] px-4 py-3 text-sm text-[#9f3d2e]">
+          {error}
+        </div>
+      ) : null}
     </form>
   );
 }

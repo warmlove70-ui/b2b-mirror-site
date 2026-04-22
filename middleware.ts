@@ -18,7 +18,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const password = process.env.ADMIN_PASSWORD || "";
+  // 使用回退密码（与环境变量一致）
+  const password = process.env.ADMIN_PASSWORD || "ZekSmart2026!";
   const token = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
 
   if (!password || token !== password) {

@@ -60,13 +60,27 @@ export function Footer() {
     <footer className="border-t border-ink/10 bg-white/50 py-10">
       <Container>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr_1fr]">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <p className="text-lg font-semibold">{brand.fullName}</p>
             <p className="max-w-xl text-sm leading-6 text-ink/68">
               B2B manufacturing partner for smart mirrors and decorative mirror collections,
               serving importers, designers, contractors, and retail buyers across the Middle East,
               South America, and Central Asia.
             </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              {brand.socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={item.label}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/12 bg-white text-ink transition hover:-translate-y-0.5 hover:border-teal hover:text-teal"
+                >
+                  <SocialIcon label={item.label} />
+                </a>
+              ))}
+            </div>
           </div>
           <div className="space-y-2 text-sm text-ink/72">
             <p className="font-semibold text-ink">Core Supply Modes</p>
@@ -84,5 +98,39 @@ export function Footer() {
         </div>
       </Container>
     </footer>
+  );
+}
+
+function SocialIcon({ label }: { label: string }) {
+  if (label === "X") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+        <path d="M18.9 2H22l-6.77 7.74L23 22h-6.1l-4.78-6.25L6.65 22H3.53l7.24-8.28L1 2h6.26l4.32 5.7L18.9 2Zm-1.07 18h1.69L6.33 3.89H4.52L17.83 20Z" />
+      </svg>
+    );
+  }
+
+  if (label === "Instagram") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-0" />
+      </svg>
+    );
+  }
+
+  if (label === "Pinterest") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+        <path d="M12 2C6.48 2 4 5.96 4 9.26c0 2.25.85 4.26 2.68 5.01.3.12.57 0 .66-.33.06-.23.2-.8.26-1.04.09-.33.05-.44-.19-.72-.52-.61-.85-1.41-.85-2.54 0-3.28 2.45-6.22 6.38-6.22 3.48 0 5.4 2.13 5.4 4.97 0 3.74-1.66 6.9-4.12 6.9-1.36 0-2.38-1.12-2.05-2.5.39-1.65 1.15-3.43 1.15-4.62 0-1.07-.57-1.96-1.76-1.96-1.4 0-2.52 1.45-2.52 3.39 0 1.24.42 2.08.42 2.08l-1.69 7.15c-.5 2.11-.08 4.69-.04 4.95.02.15.21.19.29.08.12-.16 1.69-2.09 2.22-4.01.15-.54.84-3.25.84-3.25.41.79 1.62 1.49 2.91 1.49 3.83 0 6.43-3.49 6.43-8.17C20 5.3 16.66 2 12 2Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+      <path d="M21.58 7.19a2.96 2.96 0 0 0-2.08-2.1C17.65 4.6 12 4.6 12 4.6s-5.65 0-7.5.49a2.96 2.96 0 0 0-2.08 2.1A31.24 31.24 0 0 0 2 12a31.24 31.24 0 0 0 .42 4.81 2.96 2.96 0 0 0 2.08 2.1c1.85.49 7.5.49 7.5.49s5.65 0 7.5-.49a2.96 2.96 0 0 0 2.08-2.1c.28-1.6.42-3.21.42-4.81s-.14-3.21-.42-4.81ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z" />
+    </svg>
   );
 }

@@ -4,6 +4,21 @@ import { ReactNode } from "react";
 import { Container, SectionHeading } from "@/components/layout";
 import { marketRegions, productCategories, valuePillars } from "@/components/site-data";
 
+const productImages = [
+  "/hero/product-bright.jpg",
+  "/hero/luxury-dressing-scene.jpg",
+  "/hero/luxury-bathroom-scene.jpg",
+  "/hero/showroom-bright.jpg",
+  "/hero/floor-mirror.png",
+  "/products/irregular-wavy-wall-mirror.png",
+];
+
+const audienceImages = [
+  "/hero/showroom-bright.jpg",
+  "/hero/luxury-dressing-scene.jpg",
+  "/hero/luxury-bathroom-scene.jpg",
+];
+
 export function HeroSection() {
   return (
     <section className="overflow-hidden pb-10 pt-1 sm:pb-14 sm:pt-2">
@@ -44,14 +59,14 @@ export function HeroSection() {
             <div className="relative rounded-[2.2rem] border border-ink/8 bg-white p-5 shadow-[0_30px_80px_rgba(16,33,45,0.10)] sm:p-6 xl:mt-0">
               <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#eae3da]">
                 <Image
-                  src="/hero/product-bright.jpg"
-                  alt="Mirror product and application image for overseas buyers"
+                  src="/hero/luxury-bathroom-scene.jpg"
+                  alt="Premium smart bathroom mirror installed in a modern bathroom"
                   fill
                   priority
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 58vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
               </div>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
@@ -154,12 +169,23 @@ export function ProductGridSection() {
           {productCategories.map((category, index) => (
             <div
               key={category.title}
-              className="rounded-[1.7rem] border border-ink/8 bg-white p-6 shadow-soft"
+              className="overflow-hidden rounded-[1.7rem] border border-ink/8 bg-white shadow-soft"
             >
-              <div className={`mb-5 h-44 rounded-[1.3rem] ${productBackdrop(index)}`} />
-              <p className="text-xl font-semibold text-ink">{category.title}</p>
-              <p className="mt-3 text-sm leading-6 text-ink/72">{category.description}</p>
-              <p className="mt-4 text-sm font-medium text-copper">{category.applications}</p>
+              <div className="relative h-52">
+                <Image
+                  src={productImages[index % productImages.length]}
+                  alt={category.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+              </div>
+              <div className="p-6">
+                <p className="text-xl font-semibold text-ink">{category.title}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/72">{category.description}</p>
+                <p className="mt-4 text-sm font-medium text-copper">{category.applications}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -202,14 +228,25 @@ export function AudienceSection() {
           {cards.map((card, index) => (
             <div
               key={card.title}
-              className="rounded-[1.7rem] border border-ink/8 bg-white p-6 shadow-soft"
+              className="overflow-hidden rounded-[1.7rem] border border-ink/8 bg-white shadow-soft"
             >
-              <div className={`mb-5 h-32 rounded-[1.2rem] ${audienceBackdrop(index)}`} />
-              <p className="text-2xl font-semibold text-ink">{card.title}</p>
-              <p className="mt-3 text-sm leading-6 text-ink/72">{card.description}</p>
-              <Link href={card.href} className="mt-5 inline-flex text-sm font-semibold text-teal">
-                Explore page
-              </Link>
+              <div className="relative h-40">
+                <Image
+                  src={audienceImages[index % audienceImages.length]}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+              </div>
+              <div className="p-6">
+                <p className="text-2xl font-semibold text-ink">{card.title}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/72">{card.description}</p>
+                <Link href={card.href} className="mt-5 inline-flex text-sm font-semibold text-teal">
+                  Explore page
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -378,24 +415,4 @@ function HeroImageCard({
       </div>
     </div>
   );
-}
-
-function productBackdrop(index: number) {
-  const variants = [
-    "bg-gradient-to-br from-[#ece8df] to-[#d9e6e4]",
-    "bg-gradient-to-br from-[#efe5dc] to-[#e7ddd2]",
-    "bg-gradient-to-br from-[#e2eceb] to-[#d2dedd]",
-    "bg-gradient-to-br from-[#eee5d9] to-[#e3d6c8]",
-    "bg-gradient-to-br from-[#e8efed] to-[#dbe5e2]",
-  ];
-  return variants[index % variants.length];
-}
-
-function audienceBackdrop(index: number) {
-  const variants = [
-    "bg-gradient-to-r from-[#dce9e7] to-[#eef4f3]",
-    "bg-gradient-to-r from-[#efe4d8] to-[#f6efe8]",
-    "bg-gradient-to-r from-[#e4eceb] to-[#f1f5f5]",
-  ];
-  return variants[index % variants.length];
 }
