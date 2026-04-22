@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { ADMIN_COOKIE_NAME } from "@/lib/admin-auth";
+
+const ADMIN_COOKIE_NAME = "zeksmart_admin_auth";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

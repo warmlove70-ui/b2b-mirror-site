@@ -27,3 +27,4 @@ pnpm-debug.log*
 
 # local data
 /data/leads.json
+.vercel
